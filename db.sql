@@ -17,4 +17,4 @@ CREATE TABLE answer (
   create_date DATETIME NOT NULL,
   question_id BIGINT UNSIGNED NOT NULL,
   content TEXT NOT NULL
-);  
+);

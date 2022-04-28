@@ -3,6 +3,7 @@ package com.mysite.jts;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -54,18 +55,21 @@ class JtsApplicationTests {
 		}
 	}
 
+	//질문과 일치하는 것 찾기
 	@Test
 	void testFindBySubject() {
 		Question q = this.questionRepository.findBySubject("sbb가 무엇인가요?");
 		assertEquals(1, q.getId());
 	}
 
+	//제목과 내용으로 찾기
 	@Test
 	void testFindBySubjectAndContent() {
 		Question q = this.questionRepository.findBySubjectAndContent("sbb가 무엇인가요?", "sbb에 대해서 알고 싶습니다.");
 		assertEquals(1, q.getId());
 	}
 
+	//제목에 포함된 문자로 찾기
 	@Test
 	void testFindBySubjectLike() {
 		List<Question> qList = this.questionRepository.findBySubjectLike("sbb%");
@@ -73,6 +77,8 @@ class JtsApplicationTests {
 		assertEquals("sbb가 무엇인가요?", q.getSubject());
 	}
 
+
+	//질문 수정
 	@Test
 	void testModifyQuestionSubject() {
 		Optional<Question> oq = this.questionRepository.findById(2);
@@ -83,6 +89,7 @@ class JtsApplicationTests {
 		this.questionRepository.save(q);
 	}
 
+	//질문 삭제
 	@Test
 	void testRemoveQuestion() {
 		assertEquals(2, this.questionRepository.count());
@@ -95,6 +102,8 @@ class JtsApplicationTests {
 
 	//답변 쪽 메소드
 
+
+	//답변 생성
 	@Test
 	void testCreateAnswers() {
 		Optional<Question> oq = this.questionRepository.findById(2);
@@ -108,12 +117,27 @@ class JtsApplicationTests {
 		this.answerRepository.save(a);
 	}
 
+	//답변 조회
 	@Test
 	void searchAnswer() {
 		Optional<Answer> oa = this.answerRepository.findById(1);
 		assertTrue(oa.isPresent());
 		Answer a = oa.get();
 		assertEquals(2, a.getQuestion().getId());
+	}
+
+	//답변에 연결된 질문 찾기 vs 질문에 달린 답변 찾기
+	@Transactional
+	@Test
+	void testFindRelatedAnswers() {
+		Optional<Question> oq = this.questionRepository.findById(2);
+		assertTrue(oq.isPresent());
+		Question q = oq.get();
+
+		List<Answer> answerList = q.getAnswerList();
+
+		assertEquals(1, answerList.size());
+		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
 	}
 
 	@Test

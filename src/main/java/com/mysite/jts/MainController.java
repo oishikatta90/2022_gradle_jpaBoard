@@ -15,6 +15,10 @@ public class MainController {
 
     @RequestMapping("/")
     public String root() {
+//        forward는 루트값을 그대로 가진채 해당 주소로 이동
+//        return "forward:/question/list";
+
         return "redirect:/question/list";
+
     }
 }

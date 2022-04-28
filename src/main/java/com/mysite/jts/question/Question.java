@@ -1,5 +1,6 @@
-package com.mysite.jts;
+package com.mysite.jts.question;
 
+import com.mysite.jts.answer.Answer;
 import lombok.Getter;
 import lombok.Setter;
 

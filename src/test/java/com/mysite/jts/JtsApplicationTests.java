@@ -1,5 +1,9 @@
 package com.mysite.jts;
 
+import com.mysite.jts.answer.Answer;
+import com.mysite.jts.answer.AnswerRepository;
+import com.mysite.jts.question.Question;
+import com.mysite.jts.question.QuestionRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

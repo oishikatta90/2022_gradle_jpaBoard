@@ -4,6 +4,7 @@ import com.mysite.jts.answer.Answer;
 import com.mysite.jts.answer.AnswerRepository;
 import com.mysite.jts.question.Question;
 import com.mysite.jts.question.QuestionRepository;
+import com.mysite.jts.question.QuestionService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -23,7 +24,11 @@ class JtsApplicationTests {
 	private QuestionRepository questionRepository;
 
 	@Autowired
+	private QuestionService questionService;
+
+	@Autowired
 	private AnswerRepository answerRepository;
+
 
 	@Test
 	void testCreateQuestions() {
@@ -143,6 +148,17 @@ class JtsApplicationTests {
 		assertEquals(1, answerList.size());
 		assertEquals("네 자동으로 생성됩니다.", answerList.get(0).getContent());
 	}
+
+	//예시 게시물 데이터 여러 개 생성
+	@Test
+	void testMakeQuestionMany() {
+		for (int i = 1; i <= 300; i++) {
+			String subject = "테스트 데이터입니다.: [%03d]".formatted(i);
+			String content = "내용 무";
+			this.questionService.create(subject, content);
+		}
+	}
+
 
 	@Test
 	void contextLoads() {

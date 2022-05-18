@@ -13,7 +13,7 @@ public class UserService {
     // 객체를 직접 생성하지 않고 Bean으로 등록한 PasswordEncoder 객체를 주입받아 사용
     private final PasswordEncoder passwordEncoder;
 
-    public SiteUser create(String username, String password, String email) {
+    public SiteUser create(String username, String email, String password) {
         SiteUser user = new SiteUser();
         user.setUsername(username);
         user.setEmail(email);

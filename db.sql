@@ -20,7 +20,7 @@ CREATE TABLE answer (
 );
 
 #회원 테이블 생성
-CREATE TABLE siteUser (
+CREATE TABLE site_user (
   id BIGINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
   username CHAR(100) NOT NULL UNIQUE,
   `password` CHAR(100) NOT NULL,

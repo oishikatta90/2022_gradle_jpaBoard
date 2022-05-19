@@ -35,6 +35,24 @@ ADD COLUMN author_id BIGINT UNSIGNED NOT NULL;
 ALTER TABLE answer
 ADD COLUMN author_id BIGINT UNSIGNED NOT NULL;
 
+#질문 테이블에 수정 날짜 컬럼 추가
+#alter table question
+#add column modify_date datetime not null default '1970-01-01' after create_date;
+#update question set modify_date = create_date;
+
+#질문 테이블에 수정날짜 컬럼 추가
+ALTER TABLE question
+ADD COLUMN modify_date DATETIME AFTER create_date;
+
+#답변 테이블에 수정날짜 컬럼추가
+ALTER TABLE answer
+ADD COLUMN modify_date DATETIME AFTER create_date;
+
+#답변 테이블에 수정 날짜 컬럼 추가
+#alter table answer
+#add column modify_date datetime not null DEFAULT '1970-01-01' after create_date;
+#update answer set modify_date = create_date;
+
 INSERT INTO site_user
 SET
 username = 'admin',

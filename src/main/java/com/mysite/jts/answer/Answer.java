@@ -1,6 +1,7 @@
 package com.mysite.jts.answer;
 
 import com.mysite.jts.question.Question;
+import com.mysite.jts.user.SiteUser;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,4 +26,7 @@ public class Answer {
 
     @ManyToOne
     private Question question;
+
+    @ManyToOne
+    private SiteUser author;
 }

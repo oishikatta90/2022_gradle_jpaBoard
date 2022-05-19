@@ -26,3 +26,22 @@ CREATE TABLE site_user (
   `password` CHAR(100) NOT NULL,
   email CHAR(100) NOT NULL UNIQUE
   );
+
+#질문 테이블에 작성자 컬럼 추가
+ALTER TABLE question
+ADD COLUMN author_id BIGINT UNSIGNED NOT NULL;
+
+#답변 테이블에 작성자 컬럼 추가
+ALTER TABLE answer
+ADD COLUMN author_id BIGINT UNSIGNED NOT NULL;
+
+INSERT INTO site_user
+SET
+username = 'admin',
+`password` = '$2a$10$aI3RXS0LG7smJyXI4qx8gOTJ1gKLxfm4dHoPtouNsLzPKZKa8jBcC',
+email = 'admin1@go.com';
+
+
+SELECT * FROM question;
+SELECT * FROM answer;
+SELECT * FROM `site_user`;
